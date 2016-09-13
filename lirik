@@ -1,0 +1,32 @@
+#!/usr/bin/python
+
+import linecache
+
+# deklarasi
+
+baris = 1
+bahasa_asing = raw_input("Sebutkan file yang memuat lirik bahasa asing: ")
+bahasa_indo = raw_input("Sebutkan file yang memuat lirik bahasa Indonesia: ")
+# bahasa_asing = "en.txt"
+# bahasa_indo = "id.txt"
+hasil = "lirik.md"
+file_hasil = open(hasil, "w")
+with open(bahasa_asing) as f:
+	jumlah_baris = sum(1 for _ in f)
+
+# print linecache.getline(bahasa_indo, 10)
+
+while (baris < jumlah_baris + 1):
+	# print "**%s**\n" % (linecache.getline(bahasa_asing, baris)[:-1])
+	# print linecache.getline(bahasa_indo, baris)
+	# print
+	file_hasil.write("**%s**\n\n" % (linecache.getline(bahasa_asing, baris)[:-1]))
+	file_hasil.write(linecache.getline(bahasa_indo, baris))
+	file_hasil.write("\n")
+	baris += 1
+
+print "Silahkan buka file 'lirik.md' di Firefox"
+
+# save file
+
+file_hasil.close()
